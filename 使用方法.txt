@@ -1,0 +1,100 @@
+手机无法开机的时候  
+有可能是刷写了不是官方的img(禁用VB2.0即可)或者刷错分区
+
+长按电源和音量+ 重启瞬间的按音量-  进入fastboot
+如果不行 直接长按电源和音量- 一分钟(不行就 不停按电源和音量+ 重启瞬间按音量- )
+
+所有操作前，代表你已经知晓自己在做什么，
+并且知道有可能产生不可预知的风险。
+
+双系统(需要先扩容super)
+gpt分区表改动过(比如扩容过super)刷机必须先刷TWRP
+不然super分区刷写会失败(改动过gpt分区，官方的rec_fastbootd模式无法写入super)
+
+功能1 
+ROOT(默认ksu)  默认是gt7 pro竞速版的文件。
+功能1 任何手机都可以使用。需要把文件替换成你自己的手机型号的文件(同时修改init_boot.img和recovry.img 不能只换一个)
+(如果你的手机修补的是boot.img 修改\config\root_twrp.txt 第一行init_boot改成boot)
+
+第一种:提供官方init_boot.img，脚本自动修补并刷入root。
+第二种:自己手机修补init_boot.img 得到修补后的img文件，名字必须改成 init_boot.img
+放进\images\root_twrp\文件夹里面(就是kernelsu或者magisk面具修补init_boot之后的文件.)
+
+TWRP: 换成你的手机型号(或者别的rec)
+\images\root_twrp\文件夹里面的recovery.img(第三方recovery改名得来),你可以把官方的recovery.img放进来恢复官方rec
+
+功能2 
+手动刷写分区
+手动刷写单个分区(img文件)
+把img文件拖进cmd窗口
+system.img文件刷写的分区应该是system_a或者system_b
+boot.img 文件写的分区应该是boot_a或者boot_b
+
+功能3
+ 修复fastbootD(不知道有没有用)
+就是刷入7个img文件(版本要和手机里面的系统一样).
+
+功能4 
+从卡刷包(解压出来的IMG文件夹)打包出来super.img
+如果不是官方的img文件(或者是官方解包重新打包过)(必须禁用vb2.0)不然无法开机
+
+功能5 自定义fastboot命令 已经添加临时环境变量
+自己写命令fastboot 或者adb命令 paload go命令 功能5已经添加到首页 可直接写功能
+需要添加自己的工具 请在\tools\里面添加工具
+ 并且在脚本 点我打开工具箱.bat
+
+:: 2. 需要查找的工具列表（变量名 = 工具名 + "Path"）
+set "tools_list=fastboot adb payload-dumper-go lpmake [这里添加工具名字不包含中文 比如] lpdump  "
+
+功能6.
+就是卡刷包payload.bin 提取指定的分区(默认提取全部)
+
+功能7 fastboot 驱动。第三方驱动
+原本打算把驱动一起打包 考虑到法律风险移除了. 只保存驱动检测的作用
+
+功能8 刷写super分区
+
+  从卡槽a启动  boot_a  abl_a   super_a  recovery_a     卡槽a刷650卡刷包得到650系统
+				                                          
+  从b卡槽b启动 boot_b  abl_b   super_b  recovety_b    卡槽b刷670卡刷包得到670系统
+  super.img=system.img+vendor.img....一共17个img
+
+手机从卡槽a启动是650系统 ,从卡槽b启动是670系统   
+ 
+super分区不像其他分区一样.可以有boot_a和boot_b   
+super只能有一个.有个system_a就不能有system_b.
+有了 vendor_b就不能有vendor_a
+所以你从a卡槽启动就刷650系统的super   
+所以你从b卡槽启动就刷670系统的super  如果不存在system_b 就无法启动
+如果扩容super可以容下两套super 就可以得到双系统。
+这是双系统的原理。
+   
+当你只刷一个super.img(system,vendor......17个) ,17个分区全部默认变成 _a 比如system_a..
+所以如果你的手机是b卡槽.不能刷super.img
+只能刷写system_b (system和其他17个img 属于super.img里面)
+
+功能9 扩容super 之后
+刷完空包super.img  
+进入twrp之后会冒出来很多红字，显示无法加载，因为只有分区没有数据。
+功能7补刷super就可以了。
+
+因为super丢失的话，空包会创建所有分区17个，但是卡刷包里面只有15个img
+少了两个分区，那两个分区只有空数据
+因为少了官方的img 可能需要禁用vb2.0 才可以开机 
+
+功能0 线刷卡刷包
+就是 卡刷包用电脑刷(理论上支持任意版本),不会切换卡槽
+手机无法开机可正常使用。
+
+功能A 禁用VB开机校验
+
+功能B 重启手机
+
+功能C 扩容super
+使用dd命令刷写both0.bin(线刷包里面有) ，可以用高通分区编辑器编修改分区表
+这个极度危险。所以已经移除了
+
+功能D
+
+
+

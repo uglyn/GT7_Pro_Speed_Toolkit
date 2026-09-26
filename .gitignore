@@ -1,0 +1,6 @@
+images/
+logs/
+temp/
+readback/
+*.img
+*.log

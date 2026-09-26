@@ -1,0 +1,12 @@
+root用户方法:MT管理器终端运行su，然后在运行
+setprop sys.ota.grant_ota_local_update true
+
+mount -o rw,remount /system
+挂载 rw 重新挂载
+
+获取当前目录文件夹
+@echo off
+cd /d "%~dp0"
+for /f "delims=" %%a in ("%CD%") do set "fname=%%~nxa"
+dir /b /ad > "%fname%.txt"
+pause

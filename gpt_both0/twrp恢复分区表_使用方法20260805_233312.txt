@@ -1,0 +1,17 @@
+https://t.me/gt3neo5hub
+
+把
+gpt_both0.bin15gb
+gpt_both0.bin25gb
+
+15gb或者25gb 去掉,gpt_both0.bin放c盘根目录, adb模式刷写both0.bin
+
+sdcard找不到分方法
+adb push C:\gpt_both0.bin /tmp/
+adb shell
+dd if=/tmp/gpt_both0.bin of=/dev/block/sda bs=4096 count=34
+
+还能找到sdcard的方法
+adb push C:\gpt_both0.bin /sdcard/
+adb shell
+dd if=/sdcard/gpt_both0.bin of=/dev/block/sda bs=4096 count=34
