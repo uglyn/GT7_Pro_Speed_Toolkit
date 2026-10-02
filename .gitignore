@@ -1,0 +1,12 @@
+# 自动排除包含 exe/apk/img 的目录
+apk/
+images/root_twrp/
+images/super/
+images/system/
+tools/kernelsu/
+tools/payload-dumper-go_2.1.0_windows_amd64/
+tools/platform-tools/
+tools/thka2016/
+*.exe
+*.apk
+*.img
