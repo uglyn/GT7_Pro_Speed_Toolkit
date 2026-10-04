@@ -1,0 +1,154 @@
+---------------------------------------------------------------------------------------------------------
+移动云盘      
+真我GT7_Pro_竞速版 Root_刷机_工具箱
+/*19gaLrryZjiv:/  
+ 离线使用   
+手机无法开机的时候 :
+有可能是刷写了不是官方签名的img(禁用VB2.0即可)  或者   刷错分区 刷回原厂就行
+
+快速进入:FASTBOOT   音量+和电源 按19秒.然后松开音量+  改按音量-
+
+所有操作前 先备份 基带 指纹 并标记哪个系统版本
+使用代表你已经知晓自己在做什么. 看不懂 请勿使用 
+并且知道有可能产生不可预知的风险。
+----------------------------------------------------------------------------------------------------------
+可以直接在首页  输入工具的命令 支持所有工具
+
+需要添加什么工具自己放工具文件夹在D:\GT7_Pro_Speed_Toolkit\tools 
+类似: D:\GT7_Pro_Speed_Toolkit\tools\ksu
+
+功能1 Root和 TWRP
+Root: 文件 D:\GT7_Pro_Speed_Toolkit\images\root_twrp\init_boot.img
+twrp: 文件 D:\GT7_Pro_Speed_Toolkit\images\root_twrp\recovery.img
+文件名必须是 init_boot.img和 recovery.img 
+root拖入文件脚本自动修补init_boot.img 
+twrp为内置 不要 删除recovery.img 即可
+不删除也行。每次刷写会让选择要不要刷twrp
+
+功能2 手动刷写img   fastbootD模式
+把img文件拖进cmd窗口
+system.img  文件刷写的分区  应该是  system_a   或 system_b
+boot.img     文件刷写的分区  应该是   boot_a  或 boot_b
+注意recovery.img 不一定是recovery
+不确定分区的不要手动刷
+
+功能3  修复fastbootD
+文件:D:\GT7_Pro_Speed_Toolkit\config\fastbootd.txt
+不知道有没有用
+就是刷入7个img文件(版本要和手机里面的系统一样).
+
+功能4  合并super
+只要文件夹里面有super需要的文件
+文件:D:\GT7_Pro_Speed_Toolkit\config\super.txt 
+从卡刷包 payload.bin   解压出来的IMG文件夹 ----> 打包出来super.img 手机必须在卡槽A 才可以刷入
+
+功能5   查看super分区   fastbootD模式
+
+一共17分区可以检查是否缺失
+没什么用 写着玩.
+
+功能6. 解压卡刷包
+先解压zip  ----->payload.bin
+payload.bin-----> 提取指定的分区    默认提取全部 
+mt管理器和7z 也可以直接解压
+
+功能7  刷写物理分区  到   闲置卡槽 fastbootD 
+文件:D:\GT7_Pro_Speed_Toolkit\config\super.txt 分区列表 优先从手机读 读不到用文件
+modem有可能刷写失败  不影响 fastboot 功能
+
+功能8 刷写super分区   
+少了哪个分区会自动创建分区 
+ 但只是创建分区 有数据看也没有对应的img
+比如my_preload卡刷包里面是没有的。
+就算创建了数据也是空的。
+文件:D:\GT7_Pro_Speed_Toolkit\config\super.txt
+  从卡槽a启动  boot_a  abl_a    recovery_a    +super_a  卡槽a刷650卡刷包得到650系统				                                          
+  从卡槽b启动 boot_b  abl_b    recovety_b    +super_b  卡槽b刷670卡刷包得到670系统
+  从卡槽a启动  boot_a  abl_a    recovery_a    +super_b  不开机
+  从卡槽b启动  boot_b abl_b    recovery_b    +super_a   不开机
+
+所以你从a卡槽启动就刷650系统的super   
+所以你从b卡槽启动就刷670系统的super
+
+super 只能有一个
+如果扩容super可以容下两套super 就可以得到双系统。
+这是双系统的原理。
+双系统只能刷版本号一样的.
+
+如果刷了不一样的系统
+低版本可以直接进高版本系统.数据都在
+高版本再切换回来就需要格式化手机了
+相当于不能降级。可以往高的走。
+
+当你只刷一个super.img(system,vendor......17个) 
+17个分区全部默认变成 _a 比如system_a..
+所以如果你的手机是b卡槽.
+不能刷super.img
+只能用功能8刷子分区              
+刷写system_b (system   17个img 属于super.img里面)
+
+功能9  刷写super.img空包
+
+扩容到30gb 或者25gb
+你刷15gb 的super.img 你是super 还是15gb
+文件 D:\GT7_Pro_Speed_Toolkit\images\super\super_empty_15gb.img
+文件 D:\GT7_Pro_Speed_Toolkit\images\super\super_empty_25gb.img
+刷完进twrp 冒红字正常的  这是空包
+功能8补刷super就可以了。
+
+功能0 线刷包  卡刷包 刷机 fastbootd+bootloader 模式
+不能救砖 线刷包也不行. 线刷包走的是fastboot 所以不用授权  自然也不救砖头
+
+默认禁用vb
+理论上支持任意版本
+亲测15.670 直接刷颜色17系统。
+原厂刷16.0.10.500 同理可以直接降级
+
+功能A 禁用VB开机校验
+可以twrp禁用。可以脚本禁用看哪个方便。
+
+功能B 重启手机    adb/fastboot 模式
+一般刷机完或者开机 状态下 使用
+fastboot模式选择b 直接重启到系统
+
+功能C 一键回读 AB包
+和卡刷包一样的分区   
+39物理+super分区 和卡刷包 一样的数据
+可以当卡刷包用[等同解压过后的卡刷包]
+
+功能D 刷机    到   闲置卡槽
+文件 D:\GT7_Pro_Speed_Toolkit\images\super\super_empty_15gb.img 空包清空super
+文件:D:\GT7_Pro_Speed_Toolkit\config\super.txt 分区列表 优先从手机读 读不到用文件
+刷完自动切换卡槽  因为super 只能有一个 
+既然刷机到闲置卡槽。自己super属于闲置卡槽
+除非你扩容了
+想要双系统 先 通刷 AB   再用 功能8
+
+功能E 自由回读  dd命令
+脚本读到什么分区
+你就能选择回读什么
+
+功能F 扩容super教程 
+ twrp/adb模式 我自己来回测试多次
+恢复spuer用15gb文件。
+但是我不定恢复了就和官方一样。
+要想一模一样。去售后或者9008吧。
+只能说大小是和官方一样。
+文件:D:\GT7_Pro_Speed_Toolkit\gpt_both0\gpt_both0.bin 512GB+super 15GB
+文件:D:\GT7_Pro_Speed_Toolkit\gpt_both0\gpt_both0.bin 512GB+super 25GB
+文件:D:\GT7_Pro_Speed_Toolkit\gpt_both0\gpt_both0.bin 512GB+super 29GB
+使用dd命令刷写both0.bin   都是我编辑过的
+
+我的文件只能512GB手机使用 !!
+我的文件只能512GB手机使用 !!
+
+可以用高通分区编辑器编修改分区表
+这个极度危险。 所以只提供文件
+不要乱刷gpt表文件  容易掉基带指纹那些
+
+功能G 使用方法.txt
+
+功能H.
+基础包+OTA增量包合并[只做测试用]  不要拿来刷机
+无聊写着玩.当然我会拿来刷写测试
+我是拿来测为主.

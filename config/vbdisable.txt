@@ -1,0 +1,3 @@
+vbmeta
+vbmeta_system
+vbmeta_vendor

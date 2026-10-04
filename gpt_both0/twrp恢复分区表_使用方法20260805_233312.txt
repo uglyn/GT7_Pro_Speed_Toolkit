@@ -1,0 +1,53 @@
+
+
+一不小心就砖  风险极高   
+不要刷 任何gpt 表 
+
+我的表只能  512GB的手机 刷入
+我的表只能  512GB的手机 刷入
+我的表只能  512GB的手机 刷入
+
+你的persist 指纹  fastboot 等等丢失
+除非你备份了persist(必须同一个系统版本）基带 
+userdata结束位置：124168426  其他GB自己算
+自己看吧       
+
+把
+gpt_both0.bin15gb
+gpt_both0.bin25gb
+
+名字改成gpt_both0.bin
+
+gpt_both0.bin 放c盘根目录, 
+
+twrp adb模式刷写   
+
+gpt_both0.bin
+
+sdcard找不到分方法 电脑cmd
+1推送      adb push C:\gpt_both0.bin /tmp/  
+2授权      adb shell
+3刷写     dd if=/tmp/gpt_both0.bin of=/dev/block/sda bs=4096 count=6 conv=fsync   
+4  落盘     sync
+
+下面是示例
+Microsoft Windows [版本 10.0.26200.7019]
+(c) Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>adb devices
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+List of devices attached
+2643c3a recovery
+
+
+C:\Users\Administrator>adb push C:\gpt_both0.bin /tmp/
+C:\gpt_both0.bin: 1 file pushed, 0 skipped. 6.0 MB/s (45056 bytes in 0.007s)
+
+C:\Users\Administrator> adb shell
+RE602CL1:/ # dd if=/tmp/gpt_both0.bin of=/dev/block/sda bs=4096 count=6 conv=fsync
+11+0 records in
+11+0 records out
+45056 bytes (44 K) copied, 0.003 s, 14 M/s
+RE602CL1:/ # sync
+RE602CL1:/ #
