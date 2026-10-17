@@ -1,0 +1,21 @@
+# 忽略用户自行下载的二进制工具（这些由用户自己准备）
+tools/*
+!tools/*/.gitkeep
+drivers/
+apk/
+images/
+temp/*
+!temp/*/.gitkeep
+logs/*
+!logs/*/.gitkeep
+
+# 忽略所有二进制/镜像文件
+*.exe
+*.dll
+*.so
+*.ko
+*.img
+*.bin
+*.bak
+*.log
+*.tmp
