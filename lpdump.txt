@@ -1,0 +1,255 @@
+Slot 0:
+Metadata version: 10.2
+Metadata size: 2640 bytes
+Metadata max size: 65536 bytes
+Metadata slot count: 3
+Header flags: virtual_ab_device
+Partition table:
+------------------------
+  Name: my_company_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 655 linear super 2048
+------------------------
+  Name: my_company_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_engineering_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 655 linear super 2704
+------------------------
+  Name: my_engineering_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_heytap_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 655 linear super 3360
+------------------------
+  Name: my_heytap_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_carrier_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 655 linear super 4016
+------------------------
+  Name: my_carrier_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_bigball_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 655 linear super 4672
+------------------------
+  Name: my_bigball_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_preload_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 679 linear super 5328
+------------------------
+  Name: my_preload_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_manifest_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 1335 linear super 6008
+------------------------
+  Name: my_manifest_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_region_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 14167 linear super 7344
+------------------------
+  Name: my_region_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: product_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 313079 linear super 21512
+------------------------
+  Name: product_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: system_dlkm_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 23775 linear super 334592
+------------------------
+  Name: system_dlkm_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: vendor_dlkm_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 285215 linear super 358368
+------------------------
+  Name: vendor_dlkm_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: vendor_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 1278159 linear super 643584
+------------------------
+  Name: vendor_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: system_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 2052279 linear super 1921744
+------------------------
+  Name: system_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: system_ext_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 1986727 linear super 3974024
+------------------------
+  Name: system_ext_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_product_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 2626687 linear super 5960752
+------------------------
+  Name: my_product_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: odm_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 5566175 linear super 8587440
+------------------------
+  Name: odm_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+  Name: my_stock_a
+  Group: qti_dynamic_partitions_a
+  Attributes: readonly
+  Extents:
+    0 .. 9463207 linear super 14153616
+------------------------
+  Name: my_stock_b
+  Group: qti_dynamic_partitions_b
+  Attributes: readonly
+  Extents:
+------------------------
+Super partition layout:
+------------------------
+super: 2048 .. 2704: my_company_a (656 sectors)
+super: 2704 .. 3360: my_engineering_a (656 sectors)
+super: 3360 .. 4016: my_heytap_a (656 sectors)
+super: 4016 .. 4672: my_carrier_a (656 sectors)
+super: 4672 .. 5328: my_bigball_a (656 sectors)
+super: 5328 .. 6008: my_preload_a (680 sectors)
+super: 6008 .. 7344: my_manifest_a (1336 sectors)
+super: 7344 .. 21512: my_region_a (14168 sectors)
+super: 21512 .. 334592: product_a (313080 sectors)
+super: 334592 .. 358368: system_dlkm_a (23776 sectors)
+super: 358368 .. 643584: vendor_dlkm_a (285216 sectors)
+super: 643584 .. 1921744: vendor_a (1278160 sectors)
+super: 1921744 .. 3974024: system_a (2052280 sectors)
+super: 3974024 .. 5960752: system_ext_a (1986728 sectors)
+super: 5960752 .. 8587440: my_product_a (2626688 sectors)
+super: 8587440 .. 14153616: odm_a (5566176 sectors)
+super: 14153616 .. 23616824: my_stock_a (9463208 sectors)
+------------------------
+Block device table:
+------------------------
+  Partition name: super
+  First sector: 2048
+  Size: 26843545600 bytes
+  Flags: none
+------------------------
+Group table:
+------------------------
+  Name: default
+  Maximum size: 0 bytes
+  Flags: none
+------------------------
+  Name: qti_dynamic_partitions_a
+  Maximum size: 26839355392 bytes
+  Flags: none
+------------------------
+  Name: qti_dynamic_partitions_b
+  Maximum size: 26839355392 bytes
+  Flags: none
+------------------------
+---------------
+Snapshot state:
+---------------
+Update state: none
+Using snapuserd: 0
+Using userspace snapshots: 0
+Using io_uring: 0
+Using o_direct: 0
+Using skip_verification: 0
+Cow op merge size (0 for uncapped): 0
+Worker thread count: 0
+Num verification threads: 0
+Verify block size: 0
+Using XOR compression: 1
+Current slot: _a
+Boot indicator: booting from unknown slot
+Rollback indicator: No such file or directory
+Forward merge indicator: No such file or directory
+Source build fingerprint: 
