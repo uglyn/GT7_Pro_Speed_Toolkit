@@ -3,6 +3,7 @@ setlocal enabledelayedexpansion
 call "%modulesDir%header.bat" "%~nx0" "" ""
 
 set "target=%~1"
+set "quick_check=%~2"
 set "mode=%target%"
 set "waitNo=0" 
 set "reboot_count=0"

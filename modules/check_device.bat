@@ -13,7 +13,7 @@ if /i "%~1"=="adb" (
         echo(    [错误] 没有检测到adb设备
         exit /b 1
     )
-    echo(     检测到adb设备...	
+    call "%modulesDir%logger.bat" "%~nx0"  "检测到adb设备..."
 )
 
 :: 如果是查 Fastboot
@@ -23,9 +23,8 @@ if /i "%~1"=="fastboot" (
         echo(    [错误] 没有检测到fastboot设备
         exit /b 1
     )
-    echo(     检测到fastboot设备...	
+    call "%modulesDir%logger.bat" "%~nx0"  "检测到fastboot设备..."
 )
-call "%modulesDir%usertimeout.bat"
 exit /b 0
 
 :exitb1

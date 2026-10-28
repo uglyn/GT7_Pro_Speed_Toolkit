@@ -111,7 +111,7 @@ echo([*] ÕýÔÚÐÞ²¹ !userImg! ...
 "%ksudp%" boot-patch -b "!userImg!" --kmi !KMI! --module "!KO_FILE!" --out-name "%initBootImg%"
 if errorlevel 1 (
     echo([´íÎó] ÐÞ²¹Ê§°Ü£¡
-    call "%modulesDir%logger.bat" "%~nx0"  "ÐÞ²¹Ê§°Ü"
+    call "%modulesDir%logger.bat" "%~nx0"  "!userImg!ÐÞ²¹Ê§°Ü"
     if exist "%initBootImg%" del "%initBootImg%" >nul   
     goto exitb1
 )

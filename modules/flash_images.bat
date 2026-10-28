@@ -195,8 +195,7 @@ if exist "%filed%" del "%filed%" 2>nul
 if exist "%failureList%" del "%failureList%" 2>nul
 if exist "%skippedList%" del "%skippedList%" 2>nul
 if exist "%imgIndex%" del "%imgIndex%" 2>nul
-timeout /t 2
-call "%modulesDir%usertimeout.bat"
+timeout /t 3
 exit /b 0
 
 :error

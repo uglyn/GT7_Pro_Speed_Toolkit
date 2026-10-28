@@ -13,13 +13,14 @@ set "_outVarList=%~2"
 
 echo.
 call "%modulesDir%logger.bat" "%~nx0"  "拦截手速"
-choice /c x /n /t 1 /d x /m " 正在继续....  如果卡住 请按 x 继续"
+choice /c x /n /t 1 /d x /m " 正在继续....  丢失焦点会卡住 请手动按 x 继续...."
 
 :choose_loop
 if "%_outVarDir%"=="qq11066851"   (
 :timeout
+echo(   *******请拖入文件夹呀******** 
 call "%modulesDir%logger.bat" "%~nx0"  "请输入[拖入] 正确的文件夹路径:%userDir%"
-call "%modulesDir%usertimeout.bat"
+call "%modulesDir%usertimeout.bat" "%userDir%"
 )
 cls
 echo.
@@ -45,7 +46,7 @@ if not "%userDir:~1,1%"==":" goto timeout
 if not exist "%userDir%"  goto timeout
 
 if /i "%userDir:~-4%"==".lnk" (
-	echo( %userDir%:  ****不支持快捷方式*****
+	echo(   *******不支持快捷方式******** 
                 call "%modulesDir%logger.bat" "%~nx0"  "不支持快捷方式:%userDir%"
                 goto timeout
 )
@@ -54,7 +55,7 @@ rem 3. 提取属性，判断是否为文件夹
 set "attr="
 for %%I in ("!userDir!") do set "attr=%%~aI"
 if /i not "!attr:~0,1!"=="d" (
-    echo(      [0]!userDir! 请不要拖入文件!
+    echo(   *******请不要拖入文件********
     call "%modulesDir%logger.bat" "%~nx0"  "!userDir! 请不要拖入文件!"
     goto timeout
 )

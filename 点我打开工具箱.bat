@@ -44,7 +44,7 @@ set "today=%today:	=%"
 set "logFile=%logsDir%%today%.log"
 call "%modulesDir%logger.bat" "%~nx0" "脚本启动"
 if not exist "%logFile%" (
-    echo(     电脑日期格式脚本不认识.无法生成日志文件. 暂停使用
+    echo(     无法生成日志文件. 暂停使用
     pause
     exit /b 1
   )
@@ -179,14 +179,13 @@ del "%pd0Dir%toolbox_busy.lock" 2>nul
 del /f /q "%tempDir%*" >nul 2>&1
 if %rc% EQU 11 (
          echo.
-         echo     10秒后重启手机 
+         echo(     不需要重启手机 可关闭脚本 或 断开手机 
          echo.
-         echo     不需要重启手机 可关闭脚本 或 断开手机
-         echo     --------------------------------------------------------------------------------------------
-         echo      请按任意键继续-------> 直接重启
+         echo(     10秒后重启手机
+         echo(     --------------------------------------------------------------------------------------------
          timeout /t 10 
          call "%modulesDir%wait_fastboot_device.bat" "reboot"  & goto cleanup
 )
 if %rc% EQU 1  pause
-if %rc% EQU 0 choice /c 0 /n /t 1 /d 0 /m  "等待1秒后继续. 按0直接接续.. 如果卡住请手动按0 继续.." 
+if %rc% EQU 0 choice /c 0 /n /t 2 /d 0 /m  "等待2秒后继续. 按0直接继续.. 丢失焦点会卡住.." 
 goto :menu

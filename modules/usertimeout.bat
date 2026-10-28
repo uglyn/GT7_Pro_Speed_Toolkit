@@ -2,7 +2,6 @@
 chcp 936 >nul
 setlocal enabledelayedexpansion
 echo.
-echo(-------------------------------------------------------------------------
 echo(参数1:%1   
 echo(参数2:%2
 echo. 
