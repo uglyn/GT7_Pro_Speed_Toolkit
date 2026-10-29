@@ -177,8 +177,7 @@ call "%modulesDir%logger.bat" "%~nx0"  "[打包成功] 总数=!totalCount! 成功=!okCou
 if defined sizeTmp if exist "!sizeTmp!" del "!sizeTmp!" >nul 2>&1
 if defined devList if exist "!devList!" del "!devList!" >nul 2>&1
 if defined mapperList if exist "!mapperList!" del "!mapperList!" >nul 2>&1
-timeout /t 5
-exit /b 0
+exit /b 1
 
 :build_failed
 if defined sizeTmp if exist "!sizeTmp!" del "!sizeTmp!" >nul 2>&1

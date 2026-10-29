@@ -57,11 +57,9 @@ if /I "%attr:~0,1%"=="d" (
 )
 
 echo.
-echo(已使用文件:%chooseFile%
+call "%modulesDir%usertimeout.bat" "你选择的文件:%chooseFile%"
 call "%modulesDir%logger.bat" "%~nx0"  "使用%chooseFile%"
-echo.
 endlocal & set "%_outVar%=%chooseFile%"
-call "%modulesDir%usertimeout.bat"
 exit /b 0
 
 :exitb1

@@ -133,10 +133,6 @@ for /f "usebackq delims=" %%i in ("%filed%") do (
     )
   )
 
-  rem ===== 【删除】原来的 file_fallback 调用，已不需要 =====
-  rem if not defined imgPath (
-  rem   call "%modulesDir%file_fallback.bat" "!part!.img" "imgPath"
-  rem )
 
   if not defined imgPath (
     echo(缺失文件: !part!.img

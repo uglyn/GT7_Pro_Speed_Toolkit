@@ -13,17 +13,13 @@ echo(  2 -  25G    双系统专用
 echo(============================================
 choice /c 12 /n /m  " 请输入数字 [1/2]: "
 set "usersel=!errorlevel!"
-set "imgFile="
+set "imgFile=qq11066851"
 if "!usersel!"=="1" set "imgFile=%imagesDir%super\super14.5_empty.img"
 if "!usersel!"=="2" set "imgFile=%imagesDir%super\super25_empty.img"
 
-cls
 echo.
-echo(即将刷写：%imgFile% 
-timeout /t 2
-echo.
-
-call "%modulesDir%logger.bat" "%~nx0"  "重启到bootloader"
+call "%modulesDir%usertimeout.bat" "即将刷写：%imgFile%"
+call "%modulesDir%logger.bat" "%~nx0"  "重启到bootloader" || exit /b 1
 call "%modulesDir%wait_fastboot_device.bat" bootloader || exit /b 1
 
 call "%modulesDir%logger.bat" "%~nx0"  "%fastbootp% wipe-super %imgFile%"

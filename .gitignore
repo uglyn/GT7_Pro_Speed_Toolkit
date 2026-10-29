@@ -1,5 +1,5 @@
 *.exe
-*.img
 *.ko
-*.apk
+*.img
 *.dll
+*.apk

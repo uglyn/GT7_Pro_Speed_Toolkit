@@ -40,7 +40,7 @@ if not errorlevel 1 (
 )
     if /i "!cur!"=="%target%" goto end
     if defined cur goto reboot
-    rem === 走到这里，说明 cur 是空的（没找到设备） ===
+    rem  走到这里，说明 cur 是空的（没找到设备） 
     if /i "%target%"=="reboot" (
         echo(未检测到设备，直接退出。
         goto exitb1

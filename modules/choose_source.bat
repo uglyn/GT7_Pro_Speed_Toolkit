@@ -143,13 +143,10 @@ if !itemCount! equ 0 (
 echo(找到 !itemCount! 个条目。
 call "%modulesDir%logger.bat" "%~nx0"  "条目总数: !itemCount!"
 
-echo.
-echo.
-echo(已使用文件夹: "%userDir%"      文件列表: "%fileList%"
-echo.
 
+echo.
+call "%modulesDir%usertimeout.bat" "已使用文件夹: %userDir%" "文件列表: %fileList%"
 endlocal & set "%_outVarDir%=%userDir%" & set "%_outVarList%=%fileList%"
-call "%modulesDir%usertimeout.bat"
 exit /b 0
 
 :exitb1

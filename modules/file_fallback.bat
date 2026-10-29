@@ -29,7 +29,7 @@ for %%D in (system super) do (
 :found_done
 :: 无论找没找到，都安全返回结果
 endlocal & set "%retVar%=%foundPath%"
-call "%modulesDir%usertimeout.bat"
+timeout /t 2
 exit /b 0
 
 :exitb1

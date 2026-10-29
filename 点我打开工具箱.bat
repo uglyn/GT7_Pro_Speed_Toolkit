@@ -51,7 +51,7 @@ if not exist "%logFile%" (
 :menu
 cls
 echo.
-echo         GT7Pro 竞速版工具箱  ******关闭其他刷机工具后使用****  20261027  工作目录:%pd0Dir%  
+echo         GT7Pro 竞速版工具箱  ******关闭其他刷机工具后使用****  20261029   工作目录:%pd0Dir%  
 echo     --------------------------------------------------------------------------------------------------------------
 echo     1.ROOT_TWRP:解锁BL之后 默认ksu         2.手动flash分区:img             3.修复fastbootD模式
 echo.
@@ -59,7 +59,7 @@ echo     4.合成super:默认卡槽A                  5.查看super分区                 
 echo.
 echo     7.纯FBD刷物理分区到闲置卡槽            8.刷写super:自动重建分区        9.初始化super
 echo.
-echo     0.[卡]线刷包:不救砖_降级必格式化手机   A.禁用开机VB校验[注意版本]      B.重启手机(手机需正确连接状态)
+echo     0.[卡]线刷包:刷机_降级必格式化手机     A.禁用开机VB校验[注意版本]      B.重启手机(手机需正确连接状态)
 echo.
 echo     C.一键回读AB包[类似卡刷包]             D.刷机到闲置卡槽:会切换卡槽     E.手机分区读取[回读] 需adb和root权限
 echo. 
@@ -73,7 +73,7 @@ echo     adb reboot fastboot                   fastboot reboot fastboot         
 echo     adb shell getprop ro.boot.slot_suffix fastboot getvar current-slot     // 查看当前槽位（_a 或 _b）
 echo     [1]刷写 boot 分区（例子）             fastboot flash boot boot.img    //flash 分区名 .img文件
 echo                                           fastboot set_active a或者b     //切换卡槽  
-echo     [2]不知道为什么要换卡槽,禁止切换卡槽 否则黑砖   
+echo     [2]不知道为什么要换卡槽,禁止切换卡槽 否则黑砖   [3]fastboot 乱码请重启电脑和手机 原因是软件冲突
 echo     --------------------------------------------------------------------------------------------------------------
 
 %adbp% devices 2>nul | findstr /i "device$" >nul
@@ -92,7 +92,7 @@ set "choice=qq11066851"
 set /p choice=请输入[0-9 A-J]后 按回车键 [可直接写 粘贴:adb/fastboot/payloadgo/lpmake命令]:
 echo ------------------------------------------------------------------------------------------------------------------
 set "choice=%choice:"=%"
-call "%modulesDir%logger.bat" "%~nx0" " 正在执行命令:!choice!"
+call "%modulesDir%logger.bat" "%~nx0" "正在执行命令:!choice!"
 rem 输入审查
 :trim_space
 ver>nul
@@ -102,33 +102,10 @@ if "!choice:~0,1!"==" " (
     set "choice=!choice:~1!"
     goto :trim_space
 )
-
 for %%i in (0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J) do (
     if /i "!choice!"=="%%i"  goto %%i
 )
-:: 1. 白名单拦截：如果是帮助命令，直接跳过去执行，不查设备
-echo !choice! | findstr /i /c:"--" /c:"help"  >nul
-if not errorlevel 1 goto run_cmd
-
-:: 检查如果是 adb 命令
-if /i "!choice:~0,4!"=="adb " (
-    call "%modulesDir%check_device.bat" "adb"
-     if errorlevel 1 goto cleanup
-)
-
-:: 检查如果是 fastboot 命令
-if /i "!choice:~0,9!"=="fastboot " (
-    call "%modulesDir%check_device.bat" "fastboot"
-     if errorlevel 1 goto cleanup
-)
-
-rem 执行命令
-:run_cmd
-    echo 正在执行命令:!choice!
-    !choice! 2>nul
-    ver>nul
-    goto cleanup
-
+call "%modulesDir%check_device.bat" "!choice!"  & goto cleanup
 rem 进入战斗
 :0
 call "%modulesDir%flash_payload.bat" & goto cleanup
@@ -184,8 +161,8 @@ if %rc% EQU 11 (
          echo(     10秒后重启手机
          echo(     --------------------------------------------------------------------------------------------
          timeout /t 10 
-         call "%modulesDir%wait_fastboot_device.bat" "reboot"  & goto cleanup
+         call "%modulesDir%wait_fastboot_device.bat" "reboot" & goto cleanup
 )
 if %rc% EQU 1  pause
-if %rc% EQU 0 choice /c 0 /n /t 2 /d 0 /m  "等待2秒后继续. 按0直接继续.. 丢失焦点会卡住.." 
+if %rc% EQU 0 choice /c 0 /n /t 2 /d 0 /m  "2秒后继续. 按0直接继续.. 丢失焦点会卡住.. 卡住请手动按 0 " 
 goto :menu

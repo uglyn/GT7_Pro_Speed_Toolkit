@@ -32,5 +32,5 @@ echo(刷写成功 已经禁用%partName% 开机校验
 echo.
 echo(正在重启手机
 echo.
-"%fastbootp%" "reboot"
+call "%modulesDir%wait_fastboot_device.bat" "reboot"
 exit /b 0

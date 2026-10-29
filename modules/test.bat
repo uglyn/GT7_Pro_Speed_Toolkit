@@ -2,8 +2,8 @@
 chcp 936 >nul
 setlocal enabledelayedexpansion
 call "%modulesDir%header.bat" "%~nx0" "" ""
-adb shell lpdump > lpdump.txt
-exit /b 11
+call "%modulesDir%wait_fastboot_device.bat" "reboot"
+exit /b 1
 
 :log
 >>"%logFile%" echo(%time% %~1

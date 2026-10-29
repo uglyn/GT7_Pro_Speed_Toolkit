@@ -143,9 +143,7 @@ for %%N in (!sel!) do (
 
 :start_readback
 if not defined processList (
-    echo.
-    echo([警告] 未匹配到任何有效分区，请重新输入。
-    timeout /t 2
+    call "%modulesDir%usertimeout.bat" "没有有效分区"
     goto show_menu
 )
 

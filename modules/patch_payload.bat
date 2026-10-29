@@ -13,17 +13,8 @@ call "%modulesDir%choose_file.bat" "INC_FILE" "增量包 payload.bin 或 zip"  || ex
 set "outDir=%pd0Dir%patched_%random%"
 if exist "%outDir%" goto gen_dir
 mkdir "%outDir%" 2>nul
-cls
-echo.
-echo.
-echo.
-echo(基础包目录 !OLD_DIR!
-echo(增量包路径 !INC_FILE!
-echo(输出目录   !outDir!
-echo(-----------------------------------------------------------------------
-echo.
-echo.
-timeout /t 4
+
+call "%modulesDir%usertimeout.bat" "基础包目录 !OLD_DIR!" "增量包路径 !INC_FILE!" "输出目录   !outDir!"
 cls
 echo.
 echo.
