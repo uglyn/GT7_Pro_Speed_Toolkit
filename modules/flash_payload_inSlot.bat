@@ -6,15 +6,14 @@ call "%modulesDir%header.bat" "%~nx0"  "" "cls"
   set "specialList=%configDir%special.txt"
   if not exist "%specialList%" (
     echo(    特殊分区表找不到
-    pause
     exit /b 1
   )
   set "excludeList=%tempDir%exclude_all.txt"
   type nul > "!excludeList!" 2>nul
+
   set "vbdisable=%configDir%vbdisable.txt"
   if not exist "%vbdisable%" (
     echo(    找不到禁用校验列表
-    pause
     exit /b 1
   )
 
@@ -47,11 +46,10 @@ call "%modulesDir%get_dynamic_partitions.bat" "superParts" "%imgDir%" || exit /b
 call "%modulesDir%logger.bat" "%~nx0"  "刷写到闲置卡槽%inActiveSlot% "
 set "activeSlot=%inActiveSlot%"
 
-call "%modulesDir%logger.bat" "%~nx0"  "清空super" 
+call "%modulesDir%logger.bat" "%~nx0"  "初始化super" 
 set "superImg=%imagesDir%super\super14.5_empty.img"
 if not exist "%superImg%"  (
- echo(没有superImg 文件
- pause
+ echo(没有%superImg%文件
  exit /b 1
 )
 
@@ -61,6 +59,8 @@ echo(%fastbootp% wipe-super %superImg%
 
 call "%modulesDir%logger.bat" "%~nx0"  "刷写super动态分区"
 call "%modulesDir%flash_images.bat" "%imgDir%" "%superParts%" "" 1 || exit /b 1
+cls
+echo.
 echo(    --------------------------------------------------------------------------------------------
 echo(     第一阶段结束 [1/2]  共二阶段  设备重启多次 莫慌
 echo.
@@ -70,7 +70,6 @@ echo(    -----------------------------------------------------------------------
 call "%modulesDir%logger.bat" "%~nx0"  "等待设备进bootloader"
 call "%modulesDir%wait_fastboot_device.bat" bootloader || exit /b 1
 
-cls
 call "%modulesDir%logger.bat" "%~nx0"  "第二阶段：刷写特殊分区到卡槽:%inActiveSlot%"
 call "%modulesDir%flash_images.bat" "%imgDir%" "%specialList%" "" 3  || exit /b 1
 
@@ -79,21 +78,19 @@ call "%modulesDir%wait_fastboot_device.bat" fastboot || exit /b 1
 
 call "%modulesDir%logger.bat" "%~nx0"  "第二阶段：刷写物理分区到 %inActiveSlot% 卡槽"
 call "%modulesDir%flash_images.bat" "%imgDir%" "%imgList%" "%excludeList%" 0  || exit /b 1
-if exist "%excludeList%" del "%excludeList%"  2>nul
 
-echo(    --------------------------------------------------------------------------------------------
-echo(     第二阶段结束.[2/2]  共二阶段 设备重启多次 莫慌
-echo.
-echo(     已经将[AB包 卡刷包] 物理分区 刷完
-echo(    --------------------------------------------------------------------------------------------
+call "%modulesDir%logger.bat" "%~nx0"  "禁用卡槽:%activeSlot% VB验证"
+call "%modulesDir%flash_images.bat" "%imgDir%" "%vbdisable%" "" 2  || exit /b 1
 
-:end
+
 cls
 echo.
 "%fastbootp%" set_active "%inActiveSlot%"
+if exist "%excludeList%" del "%excludeList%"  2>nul
 echo(    --------------------------------------------------------------------------------------------
+echo(     第二阶段结束.[2/2]  共二阶段  
 echo.
-echo(     刷机结束！  结束了  
+echo(     刷机结束！   
 echo.     
 echo(     已经刷机到: %inActiveSlot%  已切换到卡槽:"%inActiveSlot%"
 echo.

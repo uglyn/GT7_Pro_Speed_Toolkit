@@ -51,11 +51,9 @@ copy "%superParts%" "%excludeList%" >nul
 type "%specialList%" >> "%excludeList%"
 
 :start
-
 call "%modulesDir%logger.bat" "%~nx0"  "第一阶段：刷写super动态分区" 
 call "%modulesDir%flash_images.bat" "%imgDir%" "%superParts%" "" 1 || exit /b 1
 cls
-echo.
 echo.
 echo(    --------------------------------------------------------------------------------------------
 echo(     第一阶段结束 [1/2]  共二阶段  设备重启多次 莫慌
@@ -69,7 +67,6 @@ timeout /t 15
 call "%modulesDir%logger.bat" "%~nx0"  "等待设备进bootloader"
 call "%modulesDir%wait_fastboot_device.bat" bootloader || exit /b 1
 
-cls
 call "%modulesDir%logger.bat" "%~nx0"  "第二阶段：刷写特殊分区到卡槽:%activeSlot%"
 call "%modulesDir%flash_images.bat" "%imgDir%" "%specialList%" "" 3  || exit /b 1
 
@@ -100,26 +97,18 @@ call "%modulesDir%flash_images.bat" "%imgDir%" "%vbdisable%" "" 2  || exit /b 1
 )
 
 :onlya2
-echo(    --------------------------------------------------------------------------------------------
-echo(     第二阶段结束.[2/2]  共二阶段 设备重启多次 莫慌
-echo.
-echo(     已经将[AB包 卡刷包] 物理分区 刷完
-echo(    --------------------------------------------------------------------------------------------
-
-:end
 if defined excludeList if exist "%excludeList%" del "%excludeList%"  >nul 2>&1
+"%fastbootp%" erase frp
+set "activeSlot=%inSlot%"
 
 cls
 echo.
-"%fastbootp%" erase frp
-set "activeSlot=%inSlot%"
 echo(    --------------------------------------------------------------------------------------------
+echo(     第二阶段结束.[2/2]  共二阶段 
 echo.
-echo(    刷机结束！当前槽位:%activeSlot%      结束了
+echo(    刷机结束！当前槽位:%activeSlot%   
 echo.
 echo(    默认 禁用 vbmeta vbmeta_system vbmeta_vendor 开机VB校验
-echo.
-echo(    可以刷原厂 vbmeta.img vbmeta_system.img vbmeta_vendor.img   还原
 exit /b 11
 
 :error
