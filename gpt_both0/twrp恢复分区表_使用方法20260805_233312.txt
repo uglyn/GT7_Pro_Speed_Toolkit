@@ -1,0 +1,77 @@
+风险极高  一不小心就砖   
+不要乱刷 任何分区表 
+你的persist 指纹  fastboot 等等可能会丢失
+必须备份persist(必须同一个系统版本）,基带 .ocdt
+
+
+我的表只能  512GB的手机 刷入
+我的表只能  512GB的手机 刷入
+我的表只能  512GB的手机 刷入
+
+512GB手机   userdata结束位置：124168426  其他GB自己算
+自己看要不要刷     
+表名应该是我写错了应该是gpt_main0.bin 不过是名字而已知道是主表就了
+
+gpt_both0.bin15gb
+gpt_both0.bin25gb
+
+名字改成gpt_both0.bin
+
+gpt_both0.bin 放c盘根目录, 
+
+twrp adb模式刷写   gpt_both0.bin
+进入电脑cmd  count=6 只能等于6
+1推送      adb push C:\gpt_both0.bin /tmp/  
+2授权      adb shell
+3刷写     dd if=/tmp/gpt_both0.bin of=/dev/block/sda bs=4096 count=6 conv=fsync   
+4  落盘     sync
+
+下面是示例
+Microsoft Windows [版本 10.0.19044.7807]
+(c) Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>adb push C:\gpt_both0.bin /tmp/
+C:\gpt_both0.bin: 1 file pushed, 0 skipped. 43.1 MB/s (24576 bytes in 0.001s)
+
+C:\Users\Administrator>adb shell
+RE602CL1:/ # dd if=/tmp/gpt_both0.bin of=/dev/block/sda bs=4096 count=6 conv=fsync
+6+0 records in
+6+0 records out
+24576 bytes (24 K) copied, 0.002 s, 12 M/s
+RE602CL1:/ # sync
+RE602CL1:/ # reboot recovery
+
+C:\Users\Administrator> 
+
+结束!!! 必须是6+0 records in 6+0 records out
+
+
+
+
+
+下面是更多相关命令:
+
+删除userdata 分区 重建
+
+ 推送:
+adb push C:\parted.bin /tmp/
+
+进入adb shell模式:
+adb shell 
+
+授权parted权限:
+ chmod +x /tmp/parted.bin
+查看盘符 用单位:GB
+/tmp/parted.bin /dev/block/sda print
+查看盘符 单位:4096 4k块
+/tmp/parted.bin /dev/block/sda unit s print
+# 1. 删掉旧的 15 号分区
+sgdisk --delete 15 /dev/block/sda
+# 2. 自动 4K 对齐重建（0:0），  userdata 名字
+sgdisk --new 15:0:0 --change-name 15:userdata /dev/block/sda
+# 3. 强制落盘
+sync
+# 4. 重启 TWRP 刷新内核（执行到这手机会重启，这是正常的）
+reboot recovery
+
+ SKhynix HN8T274EJKX130 (scsi)

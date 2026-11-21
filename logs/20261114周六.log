@@ -1,0 +1,50 @@
+[ 9:37:46.35] [点我打开工具箱.bat] 脚本启动
+[ 9:38:05.08] [点我打开工具箱.bat] 正在执行命令:l
+[ 9:38:05.23] [work_project.bat] 脚本启动
+[ 9:38:06.55] [work_unpack.bat] 脚本启动
+[ 9:47:56.33] [点我打开工具箱.bat] 脚本启动
+[ 9:47:58.00] [点我打开工具箱.bat] 正在执行命令:l
+[ 9:47:58.11] [work_project.bat] 脚本启动
+[ 9:47:59.23] [work_unpack.bat] 脚本启动
+[ 9:49:00.03] [work_unpack.bat] 解压失败:712
+[ 9:58:45.07] [点我打开工具箱.bat] 脚本启动
+[ 9:58:47.24] [点我打开工具箱.bat] 正在执行命令:l
+[ 9:58:47.35] [work_project.bat] 脚本启动
+[ 9:58:48.27] [work_unpack.bat] 脚本启动
+[10:02:40.85] [点我打开工具箱.bat] 脚本启动
+[10:02:44.56] [点我打开工具箱.bat] 正在执行命令:l
+[10:02:44.67] [work_project.bat] 脚本启动
+[10:02:45.58] [work_unpack.bat] 脚本启动
+[10:04:38.64] [点我打开工具箱.bat] 脚本启动
+[10:04:40.34] [点我打开工具箱.bat] 正在执行命令:l
+[10:04:40.45] [work_project.bat] 脚本启动
+[10:04:41.14] [work_unpack.bat] 脚本启动
+[10:04:42.24] [work_unpack.bat] 解压成功:712 格式:EROFS
+[10:04:47.57] [work_unpack.bat] 解压成功:712 格式:EROFS
+[10:05:11.75] [work_pack.bat] 脚本启动
+[10:05:14.37] [work_pack.bat] 打包失败:my_bigball
+[10:12:22.40] [work_pack.bat] 打包成功:my_bigball 格式:EROFS
+[10:13:12.37] [work_unpack.bat] 脚本启动
+[10:13:15.15] [choose_file.bat] 脚本启动
+[10:13:15.18] [choose_file.bat] 拦截手速太快的
+[10:13:33.22] [choose_file.bat] 使用D:\5 712\vendor_dlkm.img
+[10:13:33.53] [work_unpack.bat] 添加镜像:D:\5 712\vendor_dlkm.img
+[10:13:49.27] [work_unpack.bat] 解压成功:712 格式:EXT4
+[10:13:51.49] [work_pack.bat] 脚本启动
+[10:13:56.66] [work_pack.bat] EXT4 打包取消:未指定大小
+[10:14:13.40] [work_pack.bat] 打包失败:vendor_dlkm
+[10:16:19.16] [work_pack.bat] 打包失败:vendor_dlkm
+[10:16:38.43] [work_pack.bat] 打包失败:vendor_dlkm
+[10:18:05.78] [work_pack.bat] 打包失败:vendor_dlkm
+[10:19:09.44] [work_pack.bat] 打包成功:vendor_dlkm 格式:EXT4
+[10:20:49.27] [点我打开工具箱.bat] 脚本启动
+[10:20:52.28] [点我打开工具箱.bat] 正在执行命令:l
+[10:20:52.39] [work_project.bat] 脚本启动
+[10:20:53.34] [work_unpack.bat] 脚本启动
+[10:21:02.96] [work_pack.bat] 脚本启动
+[10:22:50.12] [点我打开工具箱.bat] 脚本启动
+[10:22:58.56] [点我打开工具箱.bat] 脚本启动
+[10:24:51.43] [点我打开工具箱.bat] 脚本启动
+[10:24:54.05] [点我打开工具箱.bat] 正在执行命令:l
+[10:24:54.16] [work_project.bat] 脚本启动
+[10:25:07.65] [del_project.bat] 脚本启动

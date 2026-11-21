@@ -1,0 +1,7 @@
+vbmeta_system
+vbmeta_vendor
+vbmeta
+init_boot
+boot
+vendor_boot
+recovery

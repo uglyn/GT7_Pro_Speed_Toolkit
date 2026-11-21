@@ -1,0 +1,17 @@
+my_company
+my_engineering
+my_heytap
+my_carrier
+my_bigball
+my_preload
+my_manifest
+my_region
+product
+system_dlkm
+vendor_dlkm
+vendor
+system
+system_ext
+my_product
+odm
+my_stock
